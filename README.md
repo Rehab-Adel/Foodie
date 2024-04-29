@@ -1,2 +1,2 @@
 # Foodie
-A simple mvc project for managing nearby restaurant reservations and prepayment
+A simple MVC project for managing nearby restaurants reservations and prepayment
