@@ -30,6 +30,12 @@ namespace Foodies.Models
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+			modelBuilder.Entity<Meal>()
+			  .HasOne(m => m.Reservation)
+			  .WithMany()
+			  .HasForeignKey(m => m.Reservation_Id)
+			  .OnDelete(DeleteBehavior.Restrict);
+
 			base.OnModelCreating(modelBuilder);
 		}
 
