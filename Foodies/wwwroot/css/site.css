@@ -1,0 +1,151 @@
+:root {
+    --main-color: #5e8a45;
+    --light-green: #92ce6f;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+.logo{
+    position:absolute;
+    left:30px;
+    top:15px
+}
+
+.logo span {
+    font-family: 'Caveat','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: var(--main-color);
+    font-size: 56px;
+}
+.logo  img{
+    width:50px;
+}
+
+.start-page{
+    width:60%;
+    margin:120px auto;
+    padding:40px 20px;
+    border:2px solid var(--main-color);
+    border-radius:25px;
+}
+    .start-page img{
+        width: 80%;
+        margin: auto;
+        margin-bottom: 30px;
+    }
+
+    .start-page a, .btn-custom {
+        display: block;
+        max-width: 50%;
+        margin: 20px auto;
+        border-radius: 25px;
+        border: 2px solid var( --light-green);
+        outline: none;
+        height: 45px;
+        padding: 7px 0px;
+        font-weight: bold;
+        color: var( --light-green) !important;
+        transition: 1s;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+        .start-page a:hover, .btn-custom:hover{
+            background-color: var( --light-green);
+            color: #fff !important;
+        }
+
+@media (max-width: 767px){
+    .logo span {
+
+        font-size: 36px;
+    }
+
+    .logo img {
+        width: 30px;
+    }
+
+}
+
+/* end start page*/
+
+/*start login*/
+.main-title{
+    margin-bottom:20px;
+    padding-left:10px;
+    color:var(--light-green);
+    border-left:4px solid var(--light-green);
+} 
+
+
+.register-page, .login-page {
+    width: 65%;
+    margin: 160px auto;
+    flex-wrap:wrap;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 25px
+}
+form {
+    width: 55%
+}
+.register-page img, .login-page img{
+    width:38%;
+}
+
+.form-group label{
+    text-align:left;
+    margin:5px 0px;
+    font-weight:400;
+
+}
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem var(--light-green);
+}
+input.form-control {
+    width: 100%;
+    border:1px solid var(--light-green);
+    padding:10px;
+    border-radius:5px;
+}
+
+form .btn-custom {
+    max-width: 100%;
+    width: 100%;
+ 
+}
+/*End login*/
+
+
+@media (max-width: 767px) {
+
+
+    .register-page, .login-page {
+        width: 90%;
+        margin: 90px auto;
+      flex-direction:column;
+        gap: 25px
+    }
+
+    form {
+        width: 90%;
+        order:2;
+       
+    }
+
+    .register-page img, .login-page img {
+        width: 50%;
+        order:1;
+    }
+}
