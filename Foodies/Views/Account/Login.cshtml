@@ -1,0 +1,50 @@
+﻿@{
+    Layout = null;
+}
+<html>
+<head>
+
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <link rel="shortcut icon" href="~/images/icon.png" />
+</head>
+
+<body>
+
+    <h1 class="logo">
+        <span>Foodies</span>
+        <img src="~/images/logo.png" alt="logo" />
+    </h1>
+
+    <div class=" login-page">
+     
+        <form asp-action="Login" asp-controller="Account">
+            <h1 class="main-title">Foodies Login</h1>
+            <div class="form-group">
+                <label for="email">Enter Email:</label>
+                <input type="text" name="email" class="form-control" placeholder="Enter Your Email" required />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group my-3">
+                <label for="password">password:</label>
+                <input type="password" name="password" class="form-control" placeholder="Enter Your Password" required />
+                <span class="text-danger"></span>
+            </div>
+          
+           
+            <div asp-validation-summary="All" class="text-danger alert-danger"></div>
+           <a class="link-secondary" asp-action="Register" asp-controller="Account">Or Signup?</a>
+            <button type="submit" class="btn btn-custom">Login</button>
+        </form>
+
+        <img src="~/images/account.svg" alt="login" />
+    </div>
+</body>
+</html>
+
+

@@ -1,8 +1,32 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    Layout = null;
 }
+<html>
+    <head>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+        <title>Foodies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+   <link  rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <link rel="shortcut icon" href="~/images/icon.png"/>
+</head>
+
+    <body>
+ 
+<h1 class="logo">
+    <span>Foodies</span>
+    <img src="~/images/logo.png" alt="logo" />
+</h1>
+
+    <div class="text-center start-page">
+        <img src="~/images/start.svg" alt="first images"/>
+        <a asp-action="Login" asp-controller="Account"> Login</a>
+        <a asp-action="Register" asp-controller="Account"> Register</a>
+    </div>
+    </body>
+</html>
+
+
