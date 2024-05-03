@@ -9,9 +9,9 @@ namespace Foodies.Models
         public int Resturant_Id { get; set; }
 
 
-		   [ForeignKey("Resturant_Id ")]
+		[ForeignKey("Resturant_Id ")]
 		public virtual Restaurant Restaurant { get; set; }
 
-		public virtual List<Meal> Meals { get; set; } = new List<Meal>();
+		public virtual ICollection<Meal> Meals { get; set; } = new HashSet<Meal>();
 	}
 }

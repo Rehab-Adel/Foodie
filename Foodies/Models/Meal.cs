@@ -9,12 +9,10 @@ namespace Foodies.Models
         public string MealName { get; set; }
         public float Price { get; set; }
         public string Description { get; set; }
-        public int Menu_Id { get; set; }
-        public string? ImgName { get; set; }
+        public int Menu_Id { get; set; } // Foreign key to Menu
 
         [ForeignKey("Menu_Id")]
         public virtual Menu Menu { get; set; }
-
     }
 }
 
