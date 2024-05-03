@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    var customers = ViewBag.Customers as List<Foodies.Models.Customer>;
+}
+
+
+<h1>Hi Admin</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+    
+        </tr>
+    </thead>
+    <tbody>
+
+
+  
+        @foreach (var customer in customers)
+        {
+            <tr>
+                <td>@customer.Username</td>
+                <td>@customer.Email</td>
+                <!-- Add other columns as needed -->
+            </tr>
+        }
+    </tbody>
+</table>

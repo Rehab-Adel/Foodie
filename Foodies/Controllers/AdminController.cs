@@ -1,12 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Foodies.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Foodies.Controllers
 {
 	public class AdminController : Controller
 	{
-		public IActionResult Index()
+        private readonly ApplicationDBContext _DBContext;
+        public AdminController(ApplicationDBContext dbContext)
+        {
+            _DBContext = dbContext;
+        }
+        public IActionResult Index()
 		{
-			return View();
+            var customers = _DBContext.Customers.ToList();
+
+
+            ViewBag.Customers = customers;
+            return View();
 		}
 	}
 }

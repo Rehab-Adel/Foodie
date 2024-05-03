@@ -24,17 +24,28 @@ namespace Foodies.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Login(string email, string password)
         {
-            if(!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
+            if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
             {
-                var user = _DBContext.Customers.FirstOrDefault(u => u.Email == email && u.Password == password);
-                if(user != null)
+                var customer = _DBContext.Customers.FirstOrDefault(u => u.Email == email && u.Password == password);
+                if (customer != null)
                 {
-                    RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Customer");
+                }
+                else
+                {
+                    var admin = _DBContext.Admins.FirstOrDefault(a => a.Email == email && a.Password == password);
+                    if (admin != null)
+                    {
+                       
+                        return RedirectToAction("Index", "Admin");
+                    }
                 }
             }
+
             ModelState.AddModelError(string.Empty, "Invalid email or Password");
             return View();
         }
+
         [HttpGet]
         public IActionResult Register()
         {
