@@ -22,7 +22,7 @@ namespace Foodies.Models
                 .HasMany(r => r.Meals)
                 .WithOne()
                 .HasForeignKey(m => m.Menu_Id)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
             base.OnModelCreating(modelBuilder);
         }
     }

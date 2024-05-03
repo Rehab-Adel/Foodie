@@ -8,7 +8,6 @@ namespace Foodies.Models
 
         public int Resturant_Id { get; set; }
 
-
 		[ForeignKey("Resturant_Id ")]
 		public virtual Restaurant Restaurant { get; set; }
 
