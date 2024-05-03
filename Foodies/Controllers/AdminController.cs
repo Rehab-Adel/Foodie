@@ -28,7 +28,7 @@ namespace Foodies.Controllers
         {
             if (ModelState.IsValid)
             {
-                var admin = _DBContetx.Admins.FirstOrDefault(a => a.Email == email && a.Password == password);
+                var admin = _DBContext.Admins.FirstOrDefault(a => a.Email == email && a.Password == password);
                 if (admin != null)
                 {
                     return RedirectToAction("Index", "Home");
