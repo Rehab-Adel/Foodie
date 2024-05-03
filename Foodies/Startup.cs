@@ -20,7 +20,7 @@ namespace Foodies
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDBContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("Server=.;Database=Foodies;Trusted_Connection=True;TrustServerCertificate=True;")));
+              options.UseSqlServer(Configuration.GetConnectionString("Server=.;Database=Foodies;Trusted_Connection=True;TrustServerCertificate=True;")));
 
             services.AddControllersWithViews();
         }
