@@ -1,8 +1,65 @@
-﻿
+﻿@model Foodies.Models.Customer
+
 @{
     ViewData["Title"] = "Index";
     
+    Layout = "_CustomerLayout";
+    ViewData["Title"] = "Home";
 }
 
-<h1>hello customer</h1>
+<div class="container">
 
+    <form class="search-form">
+        <div class="form-group">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search restaurants by name">
+        </div>
+        <button type="button" class="btn btn-success">Search</button>
+    </form>
+    @if (ViewBag.LocationGroups != null && ViewBag.LocationGroups.Count > 0)
+    {
+        @foreach (var group in ViewBag.LocationGroups)
+        {
+            <h2 class="title-c"><i class="fas fa-map-marker-alt"></i> Restaurants in @group.Key</h2>
+
+            <div class="row">
+                @foreach (var restaurant in group.Value)
+                {
+                    <div class="col-md-4 mb-3 restaurant-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title text-capitalize">@restaurant.Name</h5>
+                                <p class="card-text">@restaurant.Description</p>
+                                <p class="card-text">@restaurant.Location</p>
+                                <!-- Add more restaurant details as needed -->
+                                <a href="@Url.Action("SeeMenue", "Customer", new { id = restaurant.Id })" class="btn btn-warning">View Menu</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    }
+    else
+    {
+        <p>No restaurants available</p>
+    }
+</div>
+
+@section scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.search-form button').click(function () {
+                var query = $('#searchInput').val().toLowerCase();
+                $('.restaurant-card').each(function () {
+                    var restaurantName = $(this).find('.card-title').text().toLowerCase();
+                    if (restaurantName.includes(query)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+        });
+    </script>
+}

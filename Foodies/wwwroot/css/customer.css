@@ -1,0 +1,74 @@
+﻿:root {
+    --main-color: #5e8a45;
+    --light-green: #92ce6f;
+}
+
+
+
+.customer-page nav{
+    display:flex;
+    width:95%;
+    justify-content:space-between;
+    height:80px;
+    padding:10px;
+    margin:auto;
+    align-items:center;
+}
+nav div{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+.customer-page img{
+    width:50px
+}
+
+
+.logo-cst span {
+    font-family: 'Caveat','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: var(--main-color);
+    font-size: 46px;
+}
+
+.logo-cst img {
+    width: 40px;
+}
+
+
+.search-form{
+    width:80%;
+    margin:50px auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+    .search-form .form-group {
+        width: 70%
+    }
+    .search-form input {
+        border-radius: 25px 0px 0px 25px;
+        width: 100% !important;
+    }
+    .search-form button {
+        width: 20%;
+        height:45px;
+        border-radius: 0px 25px 25px 0px;
+    }
+
+.title-c{
+    text-align:center;
+    margin-bottom:20px;
+    color:var(--main-color)
+}
+.makeorder{
+    color:var(--main-color);
+    margin-top:40px;
+    margin-left:11%;
+    border-left:4px solid var(--main-color);
+    padding-left:10px;
+    margin-bottom:30px
+    
+}
+.meal-container img {
+    width: 300px
+}
