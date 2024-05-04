@@ -115,6 +115,52 @@ namespace Foodies.Controllers
             // rahoba work
             return RedirectToAction("AllResturants");
         }
+        //end resturant
 
+        [HttpGet]
+
+        public IActionResult EditMenue(int id)
+        {
+            var menuId = _DBContext.Menus.FirstOrDefault(m => m.Resturant_Id == id)?.Id;
+            if (menuId != null)
+            {
+                var menuItems = _DBContext.Meals.Where(m => m.Menu_Id == menuId).ToList();
+                return View(menuItems);
+            }
+            return NotFound(); 
+        }
+
+        [HttpGet]
+        public IActionResult AddMeal()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddMeal(Meal meal)
+        {
+            // rahoba work
+            return RedirectToAction("EditMenue", new {id=meal.Menu_Id});
+        }
+
+        [HttpGet]
+        public IActionResult UpdateMeal(int id)
+        {
+            var meal = _DBContext.Meals.FirstOrDefault(a => a.Id == id);
+            return View(meal);
+        }
+        [HttpPost]
+        public IActionResult UpdateMeal(Meal meal)
+        {
+            // rahoba work
+            return RedirectToAction("EditMenue", new { id = meal.Menu_Id });
+        }
+        [HttpPost]
+
+        public IActionResult DeleteMeal(int id)
+        {
+            var meal = _DBContext.Meals.FirstOrDefault(m => m.Id == id);
+            // rahoba work
+            return RedirectToAction("EditMenue", new { id = meal.Menu_Id });
+        }
     }
 }
