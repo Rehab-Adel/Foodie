@@ -80,7 +80,7 @@ namespace Foodies.Controllers
             }
             return View(customer);
         }
-        [HttpPost]
+        
         public IActionResult DeleteCustomer(int id)
         {
             var customerToDelete = _DBContext.Customers.FirstOrDefault(c => c.Id == id);
@@ -147,7 +147,7 @@ namespace Foodies.Controllers
             }
             return View(restaurant);
         }
-        [HttpPost]
+     
 
         public IActionResult DeleteRestaurant(int id)
         {
@@ -168,6 +168,9 @@ namespace Foodies.Controllers
             var menuId = _DBContext.Menus.FirstOrDefault(m => m.Resturant_Id == id)?.Id;
             if (menuId != null)
             {
+                
+                ViewBag.MenuId = menuId;
+                TempData["MenuId"] = menuId;
                 var menuItems = _DBContext.Meals.Where(m => m.Menu_Id == menuId).ToList();
                 return View(menuItems);
             }
@@ -177,6 +180,12 @@ namespace Foodies.Controllers
         [HttpGet]
         public IActionResult AddMeal()
         {
+            //int MenuId = 0; // Default value in case TempData["MenuId"] is null or not convertible to int
+            //if (TempData["MenuId"] != null && int.TryParse(TempData["MenuId"].ToString(), out int tempMenuId))
+            //{
+            //    MenuId = tempMenuId; 
+            //    ViewBag.MenuId= MenuId;
+            //}
             return View();
         }
 
@@ -184,6 +193,16 @@ namespace Foodies.Controllers
         public IActionResult AddMeal(Meal meal)
         {
             ModelState.Remove("Menu");
+
+            int MenuId = 0; // Default value in case TempData["MenuId"] is null or not convertible to int
+            if (TempData["MenuId"] != null && int.TryParse(TempData["MenuId"].ToString(), out int tempMenuId))
+            {
+                MenuId = tempMenuId;
+                meal.Menu_Id = MenuId;
+            }
+
+           
+        
             if (ModelState.IsValid)
             {
                 _DBContext.Meals.Add(meal);
@@ -210,8 +229,7 @@ namespace Foodies.Controllers
             }
             return View(meal);
         }
-        [HttpPost]
-
+      
         public IActionResult DeleteMeal(int id)
         {
             var meal = _DBContext.Meals.FirstOrDefault(m => m.Id == id);

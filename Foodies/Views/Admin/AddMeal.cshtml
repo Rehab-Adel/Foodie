@@ -4,7 +4,7 @@
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
     ViewData["CustomersActive"] = "";
     ViewData["RestaurantsActive"] = "active";
- 
+    // // var test = ViewBag.MenuId;
 }
 
 
@@ -12,6 +12,8 @@
 
 <form class="add-customer-form" asp-action="AddMeal" asp-controller="Admin">
     <h1 class="title">Add New Meal</h1>
+ 
+
     <div class="form-group">
         <label for="MealName">Meal Name:</label>
         <input type="text" name="MealName" class="form-control" placeholder="Enter Meal Name " required />
@@ -27,7 +29,7 @@
         <input type="text" name="Price" class="form-control" placeholder="Enter Meal Price" required />
         <span class="text-danger"></span>
     </div>
-
+    <input name="Menu_Id " value="@ViewBag.MenuId" asp-for="Menu_Id" hidden />
 
     <div asp-validation-summary="All" class="text-danger alert-danger"></div>
     <button type="submit" class="btn btn-custom">Add</button>
