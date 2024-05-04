@@ -50,36 +50,56 @@ namespace Foodies.Controllers
         [HttpPost]
         public IActionResult AddCustomer(Customer customer)
         {
-            // rahoba work
-            return RedirectToAction("Index");
+            if(ModelState.IsValid)
+            {
+                _DBContext.Customers.Add(customer);
+                _DBContext.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(customer);
         }
 
         [HttpGet]
         public IActionResult UpdateCustomer(int id)
         {
             var customer=_DBContext.Customers.FirstOrDefault(a => a.Id == id);
+            if(customer == null)
+            {
+                return NotFound();
+            }
             return View(customer);
         }
         [HttpPost]
         public IActionResult UpdateCustomer(Customer customer)
         {
-            // rahoba work
-            return RedirectToAction("Index");
+            if(ModelState.IsValid && customer != null)
+            {
+                _DBContext.Entry(customer).State = EntityState.Modified;
+                _DBContext.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(customer);
         }
         [HttpPost]
-
         public IActionResult DeleteCustomer(int id)
         {
-            // rahoba work
+            var customerToDelete = _DBContext.Customers.FirstOrDefault(c => c.Id == id);
+            if (customerToDelete != null)
+            {
+                _DBContext.Customers.Remove(customerToDelete);
+                _DBContext.SaveChanges();
+                return RedirectToAction("Index");
+            }
             return RedirectToAction("Index");
         }
+
         //end crud customer 
+
+
         [HttpGet]
         public IActionResult AllResturants()
         {
             var resturants = _DBContext.Restaurants.ToList();
-
-
             ViewBag.Resturants = resturants;
             return View();
         }
@@ -90,30 +110,54 @@ namespace Foodies.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddRestaurant(Restaurant restaurant )
+        public IActionResult AddRestaurant(Restaurant restaurant)
         {
-            // rahoba work
-            return RedirectToAction("AllResturants");
+            if (ModelState.IsValid)
+            {
+                _DBContext.Restaurants.Add(restaurant);
+                _DBContext.SaveChanges();
+
+                //menu 
+                var newMenu = new Menu { Resturant_Id = restaurant.Id };
+                _DBContext.Menus.Add(newMenu);
+                _DBContext.SaveChanges();
+                return RedirectToAction("AllResturants");
+            }
+            return View(restaurant);
         }
 
         [HttpGet]
         public IActionResult UpdateRestaurant(int id)
         {
             var resturant = _DBContext.Restaurants.FirstOrDefault(a => a.Id == id);
+            if(resturant == null)
+            {
+                return NotFound();
+            }
             return View(resturant);
         }
         [HttpPost]
         public IActionResult UpdateRestaurant(Restaurant restaurant)
         {
-            // rahoba work
-            return RedirectToAction("AllResturants");
+            if(ModelState.IsValid)
+            {
+                _DBContext.Entry(restaurant).State = EntityState.Modified;
+                _DBContext.SaveChanges();
+                return RedirectToAction("AllResturants");
+            }
+            return View(restaurant);
         }
         [HttpPost]
 
         public IActionResult DeleteRestaurant(int id)
         {
-            // rahoba work
-            return RedirectToAction("AllResturants");
+            var restaurant = _DBContext.Restaurants.FirstOrDefault(r => r.Id == id);
+            if (restaurant != null)
+            {
+                _DBContext.Restaurants.Remove(restaurant);
+                _DBContext.SaveChanges();
+            }
+            return RedirectToAction("AllRestaurants");
         }
         //end resturant
 
@@ -135,12 +179,21 @@ namespace Foodies.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult AddMeal(Meal meal)
         {
-            // rahoba work
-            return RedirectToAction("EditMenue", new {id=meal.Menu_Id});
+            if (ModelState.IsValid)
+            {
+                _DBContext.Meals.Add(meal);
+                _DBContext.SaveChanges();
+                return RedirectToAction("EditMenue", new { id = meal.Menu_Id });
+            }
+            return View(meal);
         }
+
+
+
 
         [HttpGet]
         public IActionResult UpdateMeal(int id)
@@ -151,16 +204,26 @@ namespace Foodies.Controllers
         [HttpPost]
         public IActionResult UpdateMeal(Meal meal)
         {
-            // rahoba work
-            return RedirectToAction("EditMenue", new { id = meal.Menu_Id });
+            if (ModelState.IsValid)
+            {
+                _DBContext.Entry(meal).State = EntityState.Modified;
+                _DBContext.SaveChanges();
+                return RedirectToAction("EditMenu", new { id = meal.Menu_Id });
+            }
+            return View(meal);
         }
         [HttpPost]
 
         public IActionResult DeleteMeal(int id)
         {
             var meal = _DBContext.Meals.FirstOrDefault(m => m.Id == id);
-            // rahoba work
-            return RedirectToAction("EditMenue", new { id = meal.Menu_Id });
+            if (meal != null)
+            {
+                _DBContext.Meals.Remove(meal);
+                _DBContext.SaveChanges();
+            }
+            return RedirectToAction("EditMenu", new { id = meal.Menu_Id });
         }
+        
     }
 }
