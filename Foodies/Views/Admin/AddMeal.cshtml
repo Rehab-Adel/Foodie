@@ -1,0 +1,35 @@
+﻿@model Meal
+@{
+    ViewData["Title"] = "Admin | Add Meal";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+    ViewData["CustomersActive"] = "";
+    ViewData["RestaurantsActive"] = "active";
+ 
+}
+
+
+
+
+<form class="add-customer-form" asp-action="AddMeal" asp-controller="Admin">
+    <h1 class="title">Add New Meal</h1>
+    <div class="form-group">
+        <label for="MealName">Meal Name:</label>
+        <input type="text" name="MealName" class="form-control" placeholder="Enter Meal Name " required />
+        <span class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Description">Meal Description:</label>
+        <input type="text" name="Description" class="form-control" placeholder="Enter Meal Description" required />
+        <span class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Price">Meal Price:</label>
+        <input type="text" name="Price" class="form-control" placeholder="Enter Meal Price" required />
+        <span class="text-danger"></span>
+    </div>
+
+
+    <div asp-validation-summary="All" class="text-danger alert-danger"></div>
+    <button type="submit" class="btn btn-custom">Add</button>
+</form>
+
