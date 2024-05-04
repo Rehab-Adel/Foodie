@@ -183,6 +183,7 @@ namespace Foodies.Controllers
         [HttpPost]
         public IActionResult AddMeal(Meal meal)
         {
+            ModelState.Remove("Menu");
             if (ModelState.IsValid)
             {
                 _DBContext.Meals.Add(meal);
@@ -191,9 +192,6 @@ namespace Foodies.Controllers
             }
             return View(meal);
         }
-
-
-
 
         [HttpGet]
         public IActionResult UpdateMeal(int id)
