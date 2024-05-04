@@ -8,7 +8,7 @@ namespace Foodies.Models
         [Key]
         public int Reservation_Id { get; set; }
         public int Customer_Id { get; set; }
-        public int Resturant_Id { get; set; }
+        public int Meal_Id { get; set; }
         public string PaymentType { get; set; }
         public int Quantity { get; set; }
         public bool Delivery { get; set; }
@@ -16,9 +16,7 @@ namespace Foodies.Models
         [ForeignKey("Customer_Id")]
         public virtual Customer Customer { get; set; }
 
-        [ForeignKey("Resturant_Id")]
-        public virtual Restaurant Restaurant { get; set; }
-
-        public virtual ICollection<Meal> Meals { get; set; } = new HashSet<Meal>();
+        [ForeignKey("Meal_Id")]
+        public virtual Meal Meal { get; set; }
     }
 }
