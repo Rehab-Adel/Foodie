@@ -32,7 +32,7 @@ namespace Foodies.Controllers
                 var customer = _DBContext.Customers.FirstOrDefault(u => u.Email == email && u.Password == password);
                 if (customer != null)
                 {
-                    return RedirectToAction("Index", "Customer");
+                    return RedirectToAction("Index", "Customer", new {id=customer.Id});
                 }
                 else
                 {
