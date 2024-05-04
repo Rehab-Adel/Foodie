@@ -1,31 +1,49 @@
-﻿
+﻿@model Customer
 @{
-    ViewData["Title"] = "Index";
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Admin Control | Customers";
     var customers = ViewBag.Customers as List<Foodies.Models.Customer>;
+    ViewData["CustomersActive"] = "active";
+    ViewData["RestaurantsActive"] = "";
+    ViewData["MenusActive"] = "";
+
+
 }
 
 
-<h1>Hi Admin</h1>
-
-<table>
+<h1>All Customers</h1>
+<a class="addBtn" asp-controller="Admin"  asp-action="AddCustomer">Add Customer +</a>
+<table class="table text-center">
     <thead>
         <tr>
             <th>Name</th>
             <th>Email</th>
-    
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Actions</th>
+
+
         </tr>
     </thead>
     <tbody>
-
-
-  
         @foreach (var customer in customers)
         {
             <tr>
                 <td>@customer.Username</td>
                 <td>@customer.Email</td>
-                <!-- Add other columns as needed -->
+                <td>@customer.Address</td>
+
+                <td>@customer.Phone</td>
+
+
+
+                <td>
+                    <a asp-action="UpdateCustomer" asp-controller="Admin" asp-route-id="@customer.Id "><i class="fas fa-edit" title="Edit"></i></a>
+                    <a asp-action="DeleteCustomer" asp-controller="Admin" asp-route-id="@customer.Id "><i class="fas fa-trash-alt"></i></a>
+                </td>
             </tr>
         }
     </tbody>
 </table>
+
+

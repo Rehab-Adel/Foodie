@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["CustomersActive"] = "active";
+    ViewData["RestaurantsActive"] = "";
+    ViewData["MenusActive"] = "";
+
+
+    
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/admin.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <div class="page-container d-flex ">
+        <aside>
+            <h1>Admin Control</h1>
+            <ul>
+              
+                <li><i class="fas fa-user"></i><a asp-controller="Admin" asp-action="Index" class="@ViewData["CustomersActive"]">Customers</a></li>
+                <li><i class="fas fa-store"></i><a asp-controller="Admin" asp-action="AllResturants" class="@ViewData["RestaurantsActive"]">Restaurants</a></li>
+                <li><i class="fas fa-utensils"></i><a asp-controller="Admin" asp-action="Index" class="@ViewData["MenusActive"]">Menus</a></li>
+
+                <li><i class="fas fa-sign-out-alt"></i><a asp-controller="Account" asp-action="Logout" class="@ViewData["LogOutActive"]">LogOut</a></li>
+            </ul>
+            <img class="circle" src="~/images/circles.png" />
+        </aside>
+        <div class="dynamic-section">
+            @RenderBody()
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

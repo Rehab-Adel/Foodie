@@ -78,6 +78,12 @@ namespace Foodies.Controllers
             _DBContext.SaveChanges();
             return View(customer);
         }
-        
+
+        public ActionResult Logout()
+        {
+    
+            return RedirectToAction("Login", "Account");
+        }
+
     }
 }

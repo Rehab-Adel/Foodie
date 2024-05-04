@@ -1,0 +1,47 @@
+﻿
+@model  Restaurant
+@{
+    var Restaurants = ViewBag.Resturants as List<Foodies.Models.Restaurant>;
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+    ViewData["Title"] = "Admin Control | Restaurants";
+   
+    ViewData["CustomersActive"] = "";
+    ViewData["RestaurantsActive"] = "active";
+    ViewData["MenusActive"] = "";
+
+
+}
+
+
+<h1>All Restaurants</h1>
+<a class="addBtn" asp-controller="Admin" asp-action="AddRestaurant">Add Restaurants +</a>
+<table class="table text-center">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Location</th>
+            <th>Image Name</th>
+            <th>Actions</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var restaurant in Restaurants)
+    {
+                <tr>
+                    <td>@restaurant.Name</td>
+                    <td>@restaurant.Description</td>
+                    <td>@restaurant.Location</td>
+                    <td>@restaurant.ImgName</td>
+                    <td>
+                        <a asp-action="UpdateRestaurant" asp-controller="Admin" asp-route-id="@restaurant.Id"><i class="fas fa-edit" title="Edit"></i></a>
+                          <a asp-action="DeleteRestaurant" asp-controller="Admin" asp-route-id="@restaurant.Id"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+    }
+    </tbody>
+</table>
+
+

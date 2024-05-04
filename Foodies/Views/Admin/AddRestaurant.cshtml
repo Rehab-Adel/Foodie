@@ -1,0 +1,40 @@
+﻿
+
+@{
+    ViewData["Title"] = "Admin | Add Resturant";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+    ViewData["CustomersActive"] = "";
+    ViewData["RestaurantsActive"] = "active";
+    ViewData["MenusActive"] = "";
+}
+
+
+
+
+<form class="add-customer-form" asp-action="AddRestaurant" asp-controller="Admin">
+    <h1 class="title">Add New Resturant</h1>
+    <div class="form-group">
+        <label for="Name">Resturant Name:</label>
+        <input type="text" name="Name" class="form-control" placeholder="Enter Resturant Name " required />
+        <span class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Description">Resturant Description:</label>
+        <input type="text" name="Description" class="form-control" placeholder="Enter Resturant Description" required />
+        <span class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="location">Resturant Location:</label>
+        <input type="text" name="location" class="form-control" placeholder="Enter Resturant Location" required />
+        <span class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="ImgName">Resturant Image Name:</label>
+        <input type="text" name="ImgName" class="form-control" placeholder="Enter  Resturant Image Name"  />
+        <span class="text-danger"></span>
+    </div>
+   
+    <div asp-validation-summary="All" class="text-danger alert-danger"></div>
+    <button type="submit" class="btn btn-custom">Add</button>
+</form>
+

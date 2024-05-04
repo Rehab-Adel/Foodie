@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewData["Title"] = "Admin | Add Customer";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+    ViewData["CustomersActive"] = "active";
+    ViewData["RestaurantsActive"] = "";
+    ViewData["MenusActive"] = "";
+}
+
+
+
+
+
+
+
+
+<form class="add-customer-form" asp-action="AddCustomer" asp-controller="Admin">
+    <h1 class="title">Add New Customer</h1>
+    <div class="form-group">
+        <label for="UserName">Enter Customer User Name:</label>
+        <input type="text" name="userName" class="form-control" placeholder="Enter Customer User Name" required />
+        <span class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="email">Enter Customer Email:</label>
+        <input type="text" name="email" class="form-control" placeholder="Enter  Email" required />
+        <span class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="phone">Customer Phone Number:</label>
+        <input type="text" name="phone" class="form-control" placeholder="Enter  Phone" required />
+        <span class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="address">Customer Address:</label>
+        <input type="text" name="address" class="form-control" placeholder="Enter  Address" required />
+        <span class="text-danger"></span>
+    </div>
+    <div class="form-group my-3">
+        <label for="password">Customer password:</label>
+        <input type="password" name="password" class="form-control" placeholder="Enter  Password" required />
+        <span class="text-danger"></span>
+    </div>
+    <div class="form-group my-3">
+        <label for="ConfirmPassword">Confirm Password:</label>
+        <input type="password" name="ConfirmPassword" class="form-control" placeholder="Confirm  Password" required />
+        <span class="text-danger"></span>
+    </div>
+    <div asp-validation-summary="All" class="text-danger alert-danger"></div>
+    <button type="submit" class="btn btn-custom">Add</button>
+</form>
+

@@ -1,0 +1,212 @@
+﻿/*
+    fixed styles
+*/
+:root {
+    --main-color: #92ce6f;
+    --main-text-color: #3B3B3B;
+    --light-green: #5e8a45;
+}
+h1{
+    margin:20px 0px;
+    color:var(--light-green);
+}
+li{
+    list-style:none;
+    display:flex;
+    gap:13px;
+    align-items:center;
+}
+.title {
+    text-align: center;
+    color: var( --light-green);
+    border-bottom:2px solid var(--light-green);
+    width:fit-content;
+    margin:30px auto;
+    padding-bottom:5px;
+}
+.add-customer-form{
+    margin:10px auto;
+}
+.addBtn {
+    background-color: var(--main-color);
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    width:fit-content;
+    display:block;
+    margin: 10px 0px 30px;
+    border: 1px solid #fff;
+    transition: .4s;
+    font-weight: bold;
+    text-decoration:none;
+
+}
+    .addBtn:hover {
+        background-color: #f2f2f2;
+        color:var(--main-color);
+    }
+i {
+    color: var(--main-color);
+}
+table i {
+    background-color: #f2f2f2;
+    padding: 15px;
+    margin:0px 5px;
+    border-radius: 50%
+}
+table button:not(:disabled), table [type=button]:not(:disabled), table [type=reset]:not(:disabled), table [type=submit]:not(:disabled) {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.page-container {
+    display: flex;
+    justify-content: space-between;
+}
+.form-group{
+    margin:10px 0px;
+}
+aside {
+    background-color: white;
+    border-right: 2px solid var(--main-color);
+    padding: 30px 0;
+    width: 250px;
+    position: fixed;
+    top: 0px;
+    height: 100vh
+}
+
+a.active {
+    color: var( --light-green)
+}
+
+aside h1 {
+    font-size: 27px;
+    position: relative;
+    width: fit-content;
+    margin: 10px auto;
+    padding-bottom: 10px;
+    color: var(--main-text-color);
+    margin-bottom: 60px;
+}
+
+    aside h1::before,
+    aside h1::after {
+        content: '';
+        position: absolute;
+        width: 3px;
+        height: 100%;
+        top: 0px;
+        background-color: var(--main-color);
+    }
+
+    aside h1::before {
+        left: -10px;
+    }
+
+    aside h1::after {
+        right: -10px
+    }
+
+aside ul li {
+    margin: 20px 2px;
+}
+
+    aside ul li a {
+        text-decoration: none;
+        color: var(--main-text-color);
+        transition: .3s;
+        border-bottom: 2px solid var(--main-color);
+        padding-bottom: 7px;
+        display: block;
+        width: 170px;
+        text-align: left;
+    }
+
+        aside ul li a:hover {
+            transform: translateX(10px);
+            color: var(--main-color);
+        }
+
+.dynamic-section, .right-sec {
+    margin-left: 310px !important;
+    margin: 40px 0;
+    padding: 40px 20px;
+    background-color: white;
+    border-radius: 10px;
+    width: 75%;
+}
+
+tr {
+    vertical-align: baseline;
+}
+
+th {
+    color: var(--main-color);
+    text-align: center;
+}
+
+.circle {
+    position: absolute;
+    bottom: -60px;
+    left: -102px;
+}
+input{
+    border:none;
+    border-bottom:2px solid var(--light-green)
+}
+/*mobile screen*/
+@media (max-width: 768px) {
+    aside ul li a {
+        width: 75px;
+        text-align: center;
+    }
+
+        aside ul li a:hover {
+            transform: translateX(0px) translateY(10px);
+        }
+
+    .page-container {
+        width: 98%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    ul {
+        display: flex;
+        text-align: center;
+        justify-content: space-around;
+        gap: 15px;
+    }
+
+    aside h1 {
+        margin-bottom: 15px;
+    }
+
+    .dynamic-section, .right-sec {
+        margin-left: 0px !important;
+        width: 100%;
+        margin: 150px auto;
+    }
+
+    .circle {
+        bottom: 60px;
+    }
+
+    .page-container aside.std {
+        height: 28vh;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--main-color)
+    }
+
+    aside.std .stdimg {
+        display: none
+    }
+
+    .right-sec {
+        margin-top: 250px;
+    }
+}
