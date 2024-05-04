@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Customer Home";
+    ViewData["CustomersActive"] = "active";
+    ViewData["RestaurantsActive"] = "";
+    ViewData["MenusActive"] = "";
+    var userName = ViewData["UserName"] as string;
+  
+    ViewData["UserName"] = userName;
+
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/customer.css" rel="stylesheet" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+
+    <div class="page-container d-flex flex-column customer-page ">
+      <nav>
+            <h1 class="logo-cst">
+                <span>Foodies</span>
+                <img src="~/images/logo.png" alt="logo" />
+            </h1>
+
+            <div>
+                <img src="~/images/user.png"/>
+                <h4>@userName</h4>
+            </div>
+      </nav>
+        <div class="dynamic-section">
+            @RenderBody()
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
