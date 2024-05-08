@@ -1,6 +1,8 @@
 ﻿using Foodies.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Security.Claims;
 
 namespace Foodies.Controllers
 {
@@ -32,6 +34,15 @@ namespace Foodies.Controllers
                 var customer = _DBContext.Customers.FirstOrDefault(u => u.Email == email && u.Password == password);
                 if (customer != null)
                 {
+                    var claims = new[]
+                    {
+                        new Claim(ClaimTypes.NameIdentifier, customer.Id.ToString()), // ID claim
+                        new Claim(ClaimTypes.Name, customer.Username) // Name claim
+                    };
+                    var claimsIdentity = new ClaimsIdentity(claims, "Cookies");
+                    var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+
+                    HttpContext.SignInAsync(claimsPrincipal).Wait();
                     return RedirectToAction("Index", "Customer", new {id=customer.Id});
                 }
                 else
@@ -39,7 +50,17 @@ namespace Foodies.Controllers
                     var admin = _DBContext.Admins.FirstOrDefault(a => a.Email == email && a.Password == password);
                     if (admin != null)
                     {
-                       
+                        var claims = new[]
+                         {
+                            new Claim(ClaimTypes.NameIdentifier, admin.Id.ToString()), // ID claim
+                         
+                        };
+
+                        var claimsIdentity = new ClaimsIdentity(claims, "Cookies");
+                        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+
+                        HttpContext.SignInAsync(claimsPrincipal).Wait(); // Sign in user
+
                         return RedirectToAction("Index", "Admin");
                     }
                 }
