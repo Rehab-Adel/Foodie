@@ -1,6 +1,7 @@
 ﻿using Foodies.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace Foodies.Controllers
 {
@@ -13,8 +14,11 @@ namespace Foodies.Controllers
         }
         public IActionResult Index(int id)
         {
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier); // Retrieve user ID claim
+            var userNameClaim = User.FindFirstValue(ClaimTypes.Name); // Retrieve user name claim
+            ViewBag.UserName = userNameClaim;
             var user = _DBContext.Customers.FirstOrDefault(x => x.Id == id);
-            ViewData["UserName"] = user.Username;
+            //ViewData["UserName"] = user.Username;
             if (user == null)
             {
                 return NotFound(); // Handle case where user is not found

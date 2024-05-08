@@ -1,11 +1,12 @@
-﻿@{
+﻿@using System.Security.Claims
+@{
     ViewData["Title"] = "Customer Home";
     ViewData["CustomersActive"] = "active";
     ViewData["RestaurantsActive"] = "";
     ViewData["MenusActive"] = "";
-    var userName = ViewData["UserName"] as string;
-  
-    ViewData["UserName"] = userName;
+    var userName =     User.FindFirstValue(ClaimTypes.Name) as string;
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    // ViewData["UserName"] = userName;
 
 
 }
@@ -15,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
 
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewData["Title"]</title>
+    <title>@ViewData["Title"] </title>
     <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/css/customer.css" rel="stylesheet" />
