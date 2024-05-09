@@ -37,7 +37,8 @@
                     <input type="text" id="visaNumber" name="visaNumber" class="form-control">
                 </div>
                 <div class="form-check">
-                    <input type="checkbox" id="delivery" name="delivery" class="form-check-input">
+                    <input type="checkbox" id="delivery" class="form-check-input">
+                    <input type="hidden" id="deliveryValue" name="Delivery" value="0"> <!-- Hidden input for delivery value -->
                     <label for="delivery" class="form-check-label">Delivery</label>
                 </div>
                 <div class="form-group" id="diningInNumberGroup" style="display: none;">
@@ -56,13 +57,13 @@
 @section scripts {
     <script>
         // Show/hide dining in number or Visa number based on delivery option or payment type
-        $('#delivery').change(function () {
-            if ($(this).is(':checked')) {
-                $('#diningInNumberGroup').show();
-            } else {
-                $('#diningInNumberGroup').hide();
-            }
-        });
+        // $('#delivery').change(function () {
+        //     if ($(this).is(':checked')) {
+        //         $('#diningInNumberGroup').show();
+        //     } else {
+        //         $('#diningInNumberGroup').hide();
+        //     }
+        // });
 
         $('#paymentType').change(function () {
             if ($(this).val() === 'visa') {
@@ -79,5 +80,19 @@
             var totalPrice = quantity * price;
             $('#totalPrice').text(totalPrice);
         });
+
+        function updateDeliveryValue() {
+            var deliveryCheckbox = document.getElementById("delivery");
+            var deliveryValueInput = document.getElementById("deliveryValue");
+
+            // Set value to "true" if checkbox is checked, otherwise set to "false"
+            deliveryValueInput.value = deliveryCheckbox.checked ? "true" : "false";
+        }
+
+        // Attach event listener to checkbox change event
+        document.getElementById("delivery").addEventListener("change", updateDeliveryValue);
+
+        // Call the function initially to set the initial value
+        updateDeliveryValue();
     </script>
 }
