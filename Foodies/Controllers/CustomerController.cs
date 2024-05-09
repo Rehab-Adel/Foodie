@@ -63,26 +63,37 @@ namespace Foodies.Controllers
             {
                 return NotFound();
             }
+            TempData["MealID"] = meal.Id;
             return View(meal);
         }
         // Make sure to import your Reservation model
-        public IActionResult ConfirmOrder(int id, Reservation reservation)
+        public IActionResult ConfirmOrder(int id, Reservation reservation, bool Delivery)
         {
-            var meal = _DBContext.Meals.FirstOrDefault(x => x.Id == id);
+            var mealId = TempData["MealID"] != null ? (int)TempData["MealID"] : 0;
+
+           
+            var meal = _DBContext.Meals.FirstOrDefault(x => x.Id == mealId);
+            reservation.Meal = meal;
             if (meal == null)
             {
                 return NotFound(); // Handle case where meal is not found
             }
+            reservation.Delivery= Delivery;
+            reservation.Customer_Id = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+           reservation.Meal_Id = mealId;
+            ModelState.Remove("Customer");
+            ModelState.Remove("Meal");
 
             if (ModelState.IsValid)
             {
                 try
                 {
+                 
                     var newReservation = new Reservation
                     {
                         Customer_Id = reservation.Customer_Id,
-                        Meal_Id = id,
-                        PaymentType = reservation.PaymentType,
+                      Meal_Id = reservation.Meal_Id,
+                    PaymentType = reservation.PaymentType,
                         Quantity = reservation.Quantity,
                         Delivery = reservation.Delivery
                     };
