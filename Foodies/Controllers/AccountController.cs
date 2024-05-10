@@ -100,9 +100,10 @@ namespace Foodies.Controllers
             return View(customer);
         }
 
-        public ActionResult Logout()
+        public async Task< ActionResult> Logout()
         {
-    
+
+            await HttpContext.SignOutAsync();
             return RedirectToAction("Login", "Account");
         }
 
