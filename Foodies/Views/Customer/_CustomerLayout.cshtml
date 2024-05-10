@@ -6,6 +6,7 @@
     ViewData["MenusActive"] = "";
     var userName =     User.FindFirstValue(ClaimTypes.Name) as string;
     var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
     // ViewData["UserName"] = userName;
 
 
@@ -32,7 +33,12 @@
                 <span>Foodies</span>
                 <img src="~/images/logo.png" alt="logo" />
             </h1>
-
+            <div class="btns">
+                <a asp-action="Index" asp-controller="Customer" asp-route-id="@userId">Home</a>
+                <a href="#">Setting </a>
+                <a href="#">Cart</a>
+                
+            </div>
             <div>
                 <img src="~/images/user.png"/>
                 <h4>@userName</h4>

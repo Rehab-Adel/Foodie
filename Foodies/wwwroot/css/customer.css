@@ -13,6 +13,7 @@
     padding:10px;
     margin:auto;
     align-items:center;
+    margin-bottom:30px;
 }
 nav div{
     display:flex;
@@ -54,12 +55,28 @@ nav div{
         height:45px;
         border-radius: 0px 25px 25px 0px;
     }
-
-.title-c{
-    text-align:center;
-    margin-bottom:20px;
-    color:var(--main-color)
+.btns{
+    display:flex;
+    align-items:center;
+    gap:50px;
 }
+    .btns a {
+        border: 2px solid var(--light-green);
+        border-radius: 20px;
+        padding: 5px 35px;
+        color: var(--light-green);
+        text-decoration: none;
+        transition:1s
+    }
+        .btns a:hover{
+            background-color:var(--light-green);
+            color:#fff
+        }
+        .title-c {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--main-color)
+        }
 .makeorder{
     color:var(--main-color);
     margin-top:40px;
